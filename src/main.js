@@ -41,7 +41,7 @@ document.querySelector('#root').innerHTML = `
 
 
     <!-- Retro Header -->
-    <div class="bg-black border-b-2 border-green-400 p-6 relative">
+    <div class="border-b-2 border-green-400 p-6 relative">
       <div class="max-w-7xl mx-auto">
         <div class="text-center">
           <div class="mb-4">
@@ -62,7 +62,7 @@ document.querySelector('#root').innerHTML = `
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-black border-b border-green-400 sticky top-0">
+    <nav class="border-b border-green-400 sticky top-0">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
