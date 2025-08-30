@@ -147,8 +147,8 @@ document.querySelector('#root').innerHTML = `
         <div class="grid md:grid-cols-3 gap-8">
           <div class="bg-black border-2 border-green-400 p-8 hover:bg-green-400 hover:text-black transition-all group">
             <div class="text-center mb-6">
-              <div class="w-16 h-16 bg-green-400 text-black flex items-center justify-center mx-auto mb-4 font-bold text-2xl tracking-wider group-hover:bg-black group-hover:text-green-400 transition-all">
-                🔊
+              <div class="w-16 h-16 bg-green-400 text-black flex items-center justify-center mx-auto mb-4 font-bold text-lg tracking-wider group-hover:bg-black group-hover:text-green-400 transition-all">
+                RADIO
               </div>
             </div>
             <h3 class="text-xl font-bold text-green-400 mb-4 text-center tracking-wider group-hover:text-black">[LIVE_STREAMING]</h3>
@@ -160,8 +160,8 @@ document.querySelector('#root').innerHTML = `
           
           <div class="bg-black border-2 border-green-400 p-8 hover:bg-green-400 hover:text-black transition-all group">
             <div class="text-center mb-6">
-              <div class="w-16 h-16 bg-green-400 text-black flex items-center justify-center mx-auto mb-4 font-bold text-2xl tracking-wider group-hover:bg-black group-hover:text-green-400 transition-all">
-                💬
+              <div class="w-16 h-16 bg-green-400 text-black flex items-center justify-center mx-auto mb-4 font-bold text-lg tracking-wider group-hover:bg-black group-hover:text-green-400 transition-all">
+                CHAT
               </div>
             </div>
             <h3 class="text-xl font-bold text-green-400 mb-4 text-center tracking-wider group-hover:text-black">[REAL_TIME_CHAT]</h3>
@@ -173,8 +173,8 @@ document.querySelector('#root').innerHTML = `
           
           <div class="bg-black border-2 border-green-400 p-8 hover:bg-green-400 hover:text-black transition-all group">
             <div class="text-center mb-6">
-              <div class="w-16 h-16 bg-green-400 text-black flex items-center justify-center mx-auto mb-4 font-bold text-2xl tracking-wider group-hover:bg-black group-hover:text-green-400 transition-all">
-                🔐
+              <div class="w-16 h-16 bg-green-400 text-black flex items-center justify-center mx-auto mb-4 font-bold text-lg tracking-wider group-hover:bg-black group-hover:text-green-400 transition-all">
+                AUTH
               </div>
             </div>
             <h3 class="text-xl font-bold text-green-400 mb-4 text-center tracking-wider group-hover:text-black">[AUTHENTICATION]</h3>
@@ -205,7 +205,7 @@ document.querySelector('#root').innerHTML = `
             <div class="relative overflow-hidden border-2 border-green-400 transform transition-all duration-300 group-hover:scale-105">
               <div class="w-full h-96 bg-black flex items-center justify-center">
                 <div class="text-center text-green-400">
-                  <div class="text-4xl mb-4">🔊</div>
+                  <div class="text-2xl mb-4 font-mono">[RADIO]</div>
                   <p class="text-lg font-medium tracking-wider">[RADIO_PLAYER]</p>
                   <p class="text-sm">[TAP_TO_VIEW]</p>
                 </div>
@@ -225,7 +225,7 @@ document.querySelector('#root').innerHTML = `
             <div class="relative overflow-hidden border-2 border-green-400 transform transition-all duration-300 group-hover:scale-105">
               <div class="w-full h-96 bg-black flex items-center justify-center">
                 <div class="text-center text-green-400">
-                  <div class="text-4xl mb-4">💬</div>
+                  <div class="text-2xl mb-4 font-mono">[CHAT]</div>
                   <p class="text-lg font-medium tracking-wider">[LIVE_CHAT]</p>
                   <p class="text-sm">[TAP_TO_VIEW]</p>
                 </div>
@@ -245,7 +245,7 @@ document.querySelector('#root').innerHTML = `
             <div class="relative overflow-hidden border-2 border-green-400 transform transition-all duration-300 group-hover:scale-105">
               <div class="w-full h-96 bg-black flex items-center justify-center">
                 <div class="text-center text-green-400">
-                  <div class="text-4xl mb-4">👤</div>
+                  <div class="text-2xl mb-4 font-mono">[USER]</div>
                   <p class="text-lg font-medium tracking-wider">[USER_PROFILE]</p>
                   <p class="text-sm">[TAP_TO_VIEW]</p>
                 </div>
@@ -265,7 +265,7 @@ document.querySelector('#root').innerHTML = `
             <div class="relative overflow-hidden border-2 border-green-400 transform transition-all duration-300 group-hover:scale-105">
               <div class="w-full h-96 bg-black flex items-center justify-center">
                 <div class="text-center text-green-400">
-                  <div class="text-4xl mb-4">⭐</div>
+                  <div class="text-2xl mb-4 font-mono">[XP]</div>
                   <p class="text-lg font-medium tracking-wider">[XP_SYSTEM]</p>
                   <p class="text-sm">[TAP_TO_VIEW]</p>
                 </div>
@@ -285,7 +285,7 @@ document.querySelector('#root').innerHTML = `
             <div class="relative overflow-hidden border-2 border-green-400 transform transition-all duration-300 group-hover:scale-105">
               <div class="w-full h-96 bg-black flex items-center justify-center">
                 <div class="text-center text-green-400">
-                  <div class="text-4xl mb-4">⚙️</div>
+                  <div class="text-2xl mb-4 font-mono">[CFG]</div>
                   <p class="text-lg font-medium tracking-wider">[SETTINGS]</p>
                   <p class="text-sm">[TAP_TO_VIEW]</p>
                 </div>
@@ -305,7 +305,7 @@ document.querySelector('#root').innerHTML = `
             <div class="relative overflow-hidden border-2 border-green-400 transform transition-all duration-300 group-hover:scale-105">
               <div class="w-full h-96 bg-black flex items-center justify-center">
                 <div class="text-center text-green-400">
-                  <div class="text-4xl mb-4">🔄</div>
+                  <div class="text-2xl mb-4 font-mono">[SVC]</div>
                   <p class="text-lg font-medium tracking-wider">[BACKGROUND]</p>
                   <p class="text-sm">[TAP_TO_VIEW]</p>
                 </div>
@@ -379,17 +379,17 @@ document.querySelector('#root').innerHTML = `
           <h3 class="text-2xl font-bold text-green-400 mb-6 text-center tracking-wider">[ADVANCED_TECHNICAL_FEATURES]</h3>
           <div class="grid md:grid-cols-3 gap-6 text-center">
             <div>
-              <div class="text-green-400 text-4xl mb-3">🔊</div>
+              <div class="text-green-400 text-2xl mb-3 font-mono">[STREAM]</div>
               <h4 class="text-green-400 font-bold mb-2 tracking-wider">[REAL_TIME_STREAMING]</h4>
               <p class="text-green-300 text-sm">Live radio integration with background audio services</p>
             </div>
             <div>
-              <div class="text-green-400 text-4xl mb-3">💬</div>
+              <div class="text-green-400 text-2xl mb-3 font-mono">[CHAT]</div>
               <h4 class="text-green-400 font-bold mb-2 tracking-wider">[LIVE_CHAT_SYSTEM]</h4>
               <p class="text-green-300 text-sm">Firebase-powered real-time messaging with advanced features</p>
             </div>
             <div>
-              <div class="text-green-400 text-4xl mb-3">🔐</div>
+              <div class="text-green-400 text-2xl mb-3 font-mono">[AUTH]</div>
               <h4 class="text-green-400 font-bold mb-2 tracking-wider">[DUAL_AUTHENTICATION]</h4>
               <p class="text-green-300 text-sm">Firebase + SharedPreferences for flexible user access</p>
             </div>
@@ -411,13 +411,13 @@ document.querySelector('#root').innerHTML = `
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
           <button class="bg-green-400 text-black px-10 py-5 border-2 border-green-400 hover:bg-black hover:text-green-400 transition-all font-bold text-xl tracking-wider">
             <div class="flex items-center justify-center">
-              <span class="mr-3">[💬]</span>
+              <span class="mr-3">[TALK]</span>
               [SCHEDULE_TECHNICAL_DISCUSSION]
             </div>
           </button>
           <button class="border-2 border-green-400 text-green-400 px-10 py-5 hover:bg-green-400 hover:text-black transition-all font-bold text-xl tracking-wider">
             <div class="flex items-center justify-center">
-              <span class="mr-3">[📧]</span>
+              <span class="mr-3">[MAIL]</span>
               [REQUEST_CODE_REVIEW]
             </div>
           </button>
