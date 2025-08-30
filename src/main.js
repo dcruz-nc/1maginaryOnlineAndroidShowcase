@@ -610,4 +610,80 @@ function startSystemInfoUpdates() {
 document.addEventListener('DOMContentLoaded', () => {
   startFloatingSymbols();
   startSystemInfoUpdates();
+  startGlitchEffects();
 });
+
+// Retro Terminal Glitch Effect System
+function startGlitchEffects() {
+  // Add glitch effect to navigation links only
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(link => {
+    // Store original text and prevent multiple glitch effects
+    link.dataset.originalText = link.textContent;
+    link.dataset.isGlitching = 'false';
+    
+    link.addEventListener('mouseenter', () => {
+      if (link.dataset.isGlitching === 'false') {
+        createGlitchEffect(link, 1500);
+      }
+    });
+  });
+}
+
+function createGlitchEffect(element, duration) {
+  // Prevent multiple glitch effects
+  if (element.dataset.isGlitching === 'true') {
+    return;
+  }
+  
+  element.dataset.isGlitching = 'true';
+  const originalText = element.dataset.originalText || element.textContent;
+  const glitchChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '+', '[', ']', '{', '}', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/', '~', '`'];
+  const glitchColors = ['text-green-300', 'text-green-400', 'text-green-500', 'text-green-600'];
+  
+  let glitchInterval;
+  let glitchCount = 0;
+  const maxGlitches = Math.floor(duration / 50); // Glitch every 50ms
+  
+  const startGlitch = () => {
+    glitchInterval = setInterval(() => {
+      if (glitchCount >= maxGlitches) {
+        clearInterval(glitchInterval);
+        element.textContent = originalText;
+        element.className = element.className.replace(/text-green-[3-6]00/g, '');
+        element.dataset.isGlitching = 'false';
+        return;
+      }
+      
+      // Random glitch effect
+      const effect = Math.floor(Math.random() * 3);
+      
+      switch(effect) {
+        case 0: // Character scramble
+          const scrambled = originalText.split('').map(char => 
+            Math.random() < 0.3 ? glitchChars[Math.floor(Math.random() * glitchChars.length)] : char
+          ).join('');
+          element.textContent = scrambled;
+          break;
+          
+        case 1: // Color shift
+          const randomColor = glitchColors[Math.floor(Math.random() * glitchColors.length)];
+          element.className = element.className.replace(/text-green-[3-6]00/g, '') + ' ' + randomColor;
+          break;
+          
+        case 2: // Brief flicker
+          element.style.opacity = '0.3';
+          setTimeout(() => {
+            element.style.opacity = '1';
+          }, 30);
+          break;
+      }
+      
+      glitchCount++;
+    }, 50);
+  };
+  
+  startGlitch();
+}
+
+
