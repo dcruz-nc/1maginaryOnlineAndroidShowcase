@@ -76,6 +76,48 @@
     text-shadow: 0 0 8px currentColor;
     color: #00FF00;
   }
+
+  /* CRT Glitch Effect System */
+  .glitch-overlay {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    mix-blend-mode: overlay;
+    will-change: transform, opacity;
+  }
+
+  .glitch-noise {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.8) 1px, transparent 1px),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0.5px, transparent 0.5px);
+    background-size: 4px 4px, 6px 6px, 2px 2px;
+    background-position: 0 0, 3px 3px, 1px 1px;
+    animation: glitchNoise 0.1s linear infinite;
+  }
+
+  .glitch-ascii {
+    font-family: 'Courier New', monospace;
+    font-size: 8px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+    white-space: pre;
+    overflow: hidden;
+    mix-blend-mode: difference;
+  }
+
+  .glitch-shift-horizontal {
+    animation: glitchShiftH 0.1s ease-in-out infinite alternate;
+  }
+
+  .glitch-shift-vertical {
+    animation: glitchShiftV 0.1s ease-in-out infinite alternate;
+  }
+
+  .glitch-flicker {
+    animation: glitchFlicker 0.05s ease-in-out infinite alternate;
+  }
 }
 
 @keyframes scan {
@@ -86,4 +128,42 @@
 @keyframes matrixRain {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(100%); }
+}
+
+@keyframes glitchNoise {
+  0% { 
+    background-position: 0 0, 3px 3px, 1px 1px;
+    opacity: 0.8;
+  }
+  25% { 
+    background-position: 2px 2px, 1px 1px, 3px 3px;
+    opacity: 0.9;
+  }
+  50% { 
+    background-position: 1px 1px, 4px 4px, 0px 0px;
+    opacity: 0.7;
+  }
+  75% { 
+    background-position: 3px 3px, 0px 0px, 2px 2px;
+    opacity: 0.8;
+  }
+  100% { 
+    background-position: 0 0, 3px 3px, 1px 1px;
+    opacity: 0.8;
+  }
+}
+
+@keyframes glitchShiftH {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(2px); }
+}
+
+@keyframes glitchShiftV {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(1px); }
+}
+
+@keyframes glitchFlicker {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
 }

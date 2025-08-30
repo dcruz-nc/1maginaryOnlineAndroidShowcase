@@ -611,6 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
   startFloatingSymbols();
   startSystemInfoUpdates();
   startGlitchEffects();
+  startCRTGlitchEffects();
 });
 
 // Retro Terminal Glitch Effect System
@@ -684,6 +685,96 @@ function createGlitchEffect(element, duration) {
   };
   
   startGlitch();
+}
+
+// CRT Glitch/Corruption Effect System
+function startCRTGlitchEffects() {
+  // Create glitch effects at random intervals
+  setInterval(() => {
+    // Random chance to create a glitch (20% probability)
+    if (Math.random() < 0.2) {
+      createCRTGlitch();
+    }
+  }, 2000); // Check every 2 seconds
+}
+
+function createCRTGlitch() {
+  const glitchContainer = document.createElement('div');
+  glitchContainer.className = 'glitch-overlay';
+  
+  // Random position, size, and duration
+  const x = Math.random() * (window.innerWidth - 200);
+  const y = Math.random() * (window.innerHeight - 100);
+  const width = Math.random() * 150 + 50; // 50-200px
+  const height = Math.random() * 100 + 30; // 30-130px
+  const duration = Math.random() * 400 + 100; // 100-500ms
+  
+  // Random glitch type
+  const glitchType = Math.floor(Math.random() * 3);
+  
+  glitchContainer.style.left = `${x}px`;
+  glitchContainer.style.top = `${y}px`;
+  glitchContainer.style.width = `${width}px`;
+  glitchContainer.style.height = `${height}px`;
+  
+  // Add random shift effects
+  if (Math.random() < 0.5) {
+    glitchContainer.classList.add('glitch-shift-horizontal');
+  }
+  if (Math.random() < 0.5) {
+    glitchContainer.classList.add('glitch-shift-vertical');
+  }
+  
+  // Create glitch content based on type
+  switch(glitchType) {
+    case 0: // Noise pattern
+      glitchContainer.classList.add('glitch-noise');
+      break;
+      
+    case 1: // ASCII corruption
+      glitchContainer.classList.add('glitch-ascii');
+      glitchContainer.textContent = generateRandomASCII(width, height);
+      break;
+      
+    case 2: // Mixed effect
+      glitchContainer.classList.add('glitch-noise', 'glitch-flicker');
+      const asciiOverlay = document.createElement('div');
+      asciiOverlay.className = 'glitch-ascii absolute inset-0';
+      asciiOverlay.textContent = generateRandomASCII(width, height);
+      glitchContainer.appendChild(asciiOverlay);
+      break;
+  }
+  
+  // Add to page
+  document.body.appendChild(glitchContainer);
+  
+  // Remove after duration
+  setTimeout(() => {
+    if (glitchContainer.parentNode) {
+      glitchContainer.parentNode.removeChild(glitchContainer);
+    }
+  }, duration);
+}
+
+function generateRandomASCII(width, height) {
+  const asciiChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '+', '[', ']', '{', '}', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/', '~', '`', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const cols = Math.floor(width / 8); // 8px per character
+  const rows = Math.floor(height / 8);
+  
+  let ascii = '';
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      // Random chance to show character or space
+      if (Math.random() < 0.7) {
+        ascii += asciiChars[Math.floor(Math.random() * asciiChars.length)];
+      } else {
+        ascii += ' ';
+      }
+    }
+    ascii += '\n';
+  }
+  
+  return ascii;
 }
 
 
