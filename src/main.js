@@ -18,7 +18,7 @@ document.querySelector('#root').innerHTML = `
             </div>
           </div>
           <h1 class="text-4xl md:text-6xl font-bold text-green-400 mb-4 tracking-wider" style="text-shadow: 0 0 10px #00FF00;">
-            1MAGINARY ONLINE
+            1MAGINARY.ONLINE
           </h1>
           <div class="flex justify-center space-x-4 text-sm">
             <span class="text-green-400">[VERSION] 1.0.0</span>
@@ -34,7 +34,7 @@ document.querySelector('#root').innerHTML = `
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
-            <span class="text-green-400 text-xl font-bold mr-4 tracking-wider">[1MAGINARY]</span>
+            <span class="text-green-400 text-xl font-bold mr-4 tracking-wider">[1MAGINARY.ONLINE]</span>
           </div>
           <div class="hidden md:block">
             <div class="flex items-baseline space-x-6">
