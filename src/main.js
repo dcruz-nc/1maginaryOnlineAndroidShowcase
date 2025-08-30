@@ -610,12 +610,12 @@ function startSystemInfoUpdates() {
 document.addEventListener('DOMContentLoaded', () => {
   startFloatingSymbols();
   startSystemInfoUpdates();
-  startGlitchEffects();
+  startTextRandomizerGlitchEffects();
   startCRTGlitchEffects();
 });
 
-// Retro Terminal Glitch Effect System
-function startGlitchEffects() {
+// Text Randomizer Glitch Effect System for Navigation Links
+function startTextRandomizerGlitchEffects() {
   // Add glitch effect to navigation links only
   const navLinks = document.querySelectorAll('nav a');
   navLinks.forEach(link => {
