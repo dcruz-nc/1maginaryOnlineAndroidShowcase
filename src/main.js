@@ -9,10 +9,36 @@ document.querySelector('#root').innerHTML = `
     <div class="fixed inset-0 pointer-events-none z-40 scan-line"></div>
     
     <!-- Matrix Rain Effect -->
-    <div class="fixed inset-0 pointer-events-none z-30 matrix-rain"></div>
+    <div class="fixed inset-0 pointer-events-none z-90 matrix-rain"></div>
 
     <!-- Floating ASCII Symbols Container -->
     <div id="floating-symbols" class="fixed inset-0 pointer-events-none z-45"></div>
+
+    <!-- System Info Panels -->
+    <!-- Top Left Panel -->
+    <div class="fixed top-4 left-4 z-[100] border border-green-400 p-3 text-xs system-panel">
+      <div class="text-green-400 font-bold mb-2 tracking-wider">[SYSTEM_MONITOR]</div>
+      <div class="space-y-1 text-green-300">
+        <div class="flex justify-between">
+          <span>CPU:</span>
+          <span id="cpu-usage" class="text-green-400 font-mono system-value">00%</span>
+        </div>
+        <div class="flex justify-between">
+          <span>RAM:</span>
+          <span id="ram-usage" class="text-green-400 font-mono system-value">000MB</span>
+        </div>
+        <div class="flex justify-between">
+          <span>TEMP:</span>
+          <span id="temperature" class="text-green-400 font-mono system-value">00°C</span>
+        </div>
+        <div class="flex justify-between">
+          <span>UPTIME:</span>
+          <span id="uptime" class="text-green-400 font-mono system-value">00:00:00</span>
+        </div>
+      </div>
+    </div>
+
+
 
     <!-- Retro Header -->
     <div class="bg-black border-b-2 border-green-400 p-6 relative">
@@ -546,5 +572,42 @@ function startFloatingSymbols() {
   }, 8000);
 }
 
+// System Info Panels Update System
+function updateSystemInfo() {
+  // CPU Usage (0-100%)
+  const cpuUsage = Math.floor(Math.random() * 101);
+  document.getElementById('cpu-usage').textContent = `${cpuUsage.toString().padStart(2, '0')}%`;
+  
+  // RAM Usage (100-8000MB)
+  const ramUsage = Math.floor(Math.random() * 7901) + 100;
+  document.getElementById('ram-usage').textContent = `${ramUsage.toString().padStart(4, '0')}MB`;
+  
+  // Temperature (25-85°C)
+  const temperature = Math.floor(Math.random() * 61) + 25;
+  document.getElementById('temperature').textContent = `${temperature.toString().padStart(2, '0')}°C`;
+  
+  // Uptime (random hours, minutes, seconds)
+  const hours = Math.floor(Math.random() * 24);
+  const minutes = Math.floor(Math.random() * 60);
+  const seconds = Math.floor(Math.random() * 60);
+  document.getElementById('uptime').textContent = 
+    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Start the system info update system
+function startSystemInfoUpdates() {
+  // Update immediately
+  updateSystemInfo();
+  
+  // Update every 2-4 seconds randomly
+  setInterval(() => {
+    const delay = Math.random() * 2000 + 2000; // 2-4 seconds
+    setTimeout(updateSystemInfo, delay);
+  }, 1000);
+}
+
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', startFloatingSymbols);
+document.addEventListener('DOMContentLoaded', () => {
+  startFloatingSymbols();
+  startSystemInfoUpdates();
+});

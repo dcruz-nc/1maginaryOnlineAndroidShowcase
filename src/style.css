@@ -54,6 +54,28 @@
     will-change: transform, opacity;
     filter: blur(0.2px);
   }
+
+  /* System Info Panel Styling */
+  .system-panel {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    backdrop-filter: blur(1px);
+    border-radius: 2px;
+  }
+
+  .system-panel:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    border-color: rgba(0, 255, 0, 0.8);
+  }
+
+  .system-value {
+    text-shadow: 0 0 5px currentColor;
+    transition: all 0.3s ease;
+  }
+
+  .system-value:hover {
+    text-shadow: 0 0 8px currentColor;
+    color: #00FF00;
+  }
 }
 
 @keyframes scan {
