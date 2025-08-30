@@ -2,11 +2,14 @@ import './style.css'
 
 document.querySelector('#root').innerHTML = `
   <div class="min-h-screen bg-black text-green-400 font-mono relative overflow-hidden">
+    <!-- Static Noise Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-50 static-noise"></div>
+    
     <!-- CRT Scan Lines Effect -->
-    <div class="fixed inset-0 pointer-events-none z-50">
-      <div class="w-full h-full bg-gradient-to-b from-transparent via-green-400/5 to-transparent animate-pulse"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/3 to-transparent animate-pulse" style="animation-duration: 3s;"></div>
-    </div>
+    <div class="fixed inset-0 pointer-events-none z-40 scan-line"></div>
+    
+    <!-- Matrix Rain Effect -->
+    <div class="fixed inset-0 pointer-events-none z-30 matrix-rain"></div>
 
     <!-- Retro Header -->
     <div class="bg-black border-b-2 border-green-400 p-6 relative">
@@ -430,7 +433,7 @@ document.querySelector('#root').innerHTML = `
       <div class="max-w-7xl mx-auto text-center">
         <div class="border-2 border-green-400 p-6">
           <p class="text-green-400 font-bold tracking-wider mb-2">
-            © 2024 1MAGINARY ONLINE - PORTFOLIO
+            © 2024 1MAGINARY.ONLINE - PORTFOLIO
           </p>
           <p class="text-green-300 text-sm tracking-wider">
             FULL STACK ANDROID DEVELOPMENT EXPERTISE
