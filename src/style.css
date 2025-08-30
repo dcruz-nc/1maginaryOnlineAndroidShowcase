@@ -45,6 +45,15 @@
     );
     animation: matrixRain 3s linear infinite;
   }
+
+  .floating-symbol {
+    text-shadow: 0 0 8px currentColor;
+    font-weight: normal;
+    user-select: none;
+    white-space: nowrap;
+    will-change: transform, opacity;
+    filter: blur(0.2px);
+  }
 }
 
 @keyframes scan {

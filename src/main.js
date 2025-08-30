@@ -11,6 +11,9 @@ document.querySelector('#root').innerHTML = `
     <!-- Matrix Rain Effect -->
     <div class="fixed inset-0 pointer-events-none z-30 matrix-rain"></div>
 
+    <!-- Floating ASCII Symbols Container -->
+    <div id="floating-symbols" class="fixed inset-0 pointer-events-none z-45"></div>
+
     <!-- Retro Header -->
     <div class="bg-black border-b-2 border-green-400 p-6 relative">
       <div class="max-w-7xl mx-auto">
@@ -451,3 +454,97 @@ document.querySelector('#root').innerHTML = `
     </div>
   </div>
 `
+
+// Floating ASCII Symbols System
+const symbols = ['*', '@', '#', '|', '>', '+', '=', '~', '^', 'v', '<', ':', ';', '.', ',', '!', '?', '%', '$', '&'];
+const symbolColors = ['text-green-400', 'text-green-300', 'text-green-500', 'text-green-600'];
+
+function createFloatingSymbol() {
+  const symbolContainer = document.getElementById('floating-symbols');
+  const symbol = document.createElement('div');
+  
+  // Random symbol selection
+  const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+  const randomColor = symbolColors[Math.floor(Math.random() * symbolColors.length)];
+  
+  // Random starting position (edges of screen)
+  const startSide = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
+  let startX, startY, endX, endY;
+  
+  switch(startSide) {
+    case 0: // top
+      startX = Math.random() * window.innerWidth;
+      startY = -20;
+      endX = startX + (Math.random() - 0.5) * window.innerWidth;
+      endY = window.innerHeight + 20;
+      break;
+    case 1: // right
+      startX = window.innerWidth + 20;
+      startY = Math.random() * window.innerHeight;
+      endX = -20;
+      endY = startY + (Math.random() - 0.5) * window.innerHeight;
+      break;
+    case 2: // bottom
+      startX = Math.random() * window.innerWidth;
+      startY = window.innerHeight + 20;
+      endX = startX + (Math.random() - 0.5) * window.innerWidth;
+      endY = -20;
+      break;
+    case 3: // left
+      startX = -20;
+      startY = Math.random() * window.innerHeight;
+      endX = window.innerWidth + 20;
+      endY = startY + (Math.random() - 0.5) * window.innerHeight;
+      break;
+  }
+  
+  // Random size and opacity
+  const size = Math.random() * 12 + 8; // 8px to 20px
+  const duration = Math.random() * 15000 + 10000; // 10-25 seconds
+  
+  symbol.className = `floating-symbol absolute ${randomColor} font-mono pointer-events-none`;
+  symbol.style.left = `${startX}px`;
+  symbol.style.top = `${startY}px`;
+  symbol.style.fontSize = `${size}px`;
+  symbol.style.opacity = '0';
+  symbol.style.transition = `all ${duration}ms linear`;
+  symbol.textContent = randomSymbol;
+  
+  symbolContainer.appendChild(symbol);
+  
+  // Start animation after a brief delay
+  setTimeout(() => {
+    symbol.style.opacity = '0.6';
+    symbol.style.left = `${endX}px`;
+    symbol.style.top = `${endY}px`;
+  }, 100);
+  
+  // Remove symbol after animation completes
+  setTimeout(() => {
+    if (symbol.parentNode) {
+      symbol.parentNode.removeChild(symbol);
+    }
+  }, duration + 1000);
+}
+
+// Start the floating symbols system
+function startFloatingSymbols() {
+  // Create initial symbols after a delay
+  setTimeout(() => {
+    for (let i = 0; i < 3; i++) {
+      setTimeout(createFloatingSymbol, i * 2000);
+    }
+  }, 3000);
+  
+  // Create symbols at regular intervals
+  setInterval(() => {
+    // Random number of symbols (1-3)
+    const symbolCount = Math.floor(Math.random() * 3) + 1;
+    for (let i = 0; i < symbolCount; i++) {
+      setTimeout(createFloatingSymbol, i * 1000);
+    }
+  }, 8000);
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', startFloatingSymbols);
