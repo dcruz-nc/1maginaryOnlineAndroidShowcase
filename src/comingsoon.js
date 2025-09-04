@@ -84,36 +84,6 @@ document.querySelector('#root').innerHTML = `
       █
     </div>
 
-    <!-- Music Player -->
-    <div class="fixed bottom-4 left-4 z-[200] border border-green-400 p-3 system-panel">
-      <div class="flex items-center space-x-3">
-        <!-- Play/Pause Button -->
-        <button id="play-pause-btn" class="bg-green-400 text-black px-4 py-1 text-xs font-bold tracking-wider hover:bg-green-300 transition-colors w-12 h-6 flex items-center justify-center">
-          <span id="play-icon">PLAY</span>
-          <span id="pause-icon" class="hidden">MUTE</span>
-        </button>
-        
-        <!-- Volume Control -->
-        <div class="flex items-center space-x-2">
-          <span class="text-green-400 text-xs">VOL:</span>
-          <input 
-            type="range" 
-            id="volume-slider" 
-            min="0" 
-            max="100" 
-            value="0" 
-            class="w-16 h-1 bg-green-400 appearance-none cursor-pointer slider"
-          />
-          <span id="volume-display" class="text-green-400 text-xs font-mono w-8">00%</span>
-        </div>
-      </div>
-      
-      <!-- Audio Element -->
-      <audio id="background-music" loop preload="auto">
-        <source src="/music/ambientmusic.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-    </div>
   </div>
 `
 
@@ -314,114 +284,10 @@ function generateRandomASCII(width, height) {
   return ascii;
 }
 
-// Music Player System
-function initializeMusicPlayer() {
-  const audio = document.getElementById('background-music');
-  const playPauseBtn = document.getElementById('play-pause-btn');
-  const playIcon = document.getElementById('play-icon');
-  const pauseIcon = document.getElementById('pause-icon');
-  const volumeSlider = document.getElementById('volume-slider');
-  const volumeDisplay = document.getElementById('volume-display');
-  
-  let isPlaying = false;
-  let isMuted = false; // Start unmuted at 15% volume
-  
-  // Set initial volume to 15%
-  audio.volume = 0.15;
-  volumeSlider.value = 15;
-  volumeDisplay.textContent = '15%';
-  
-  // Play/Pause functionality
-  playPauseBtn.addEventListener('click', () => {
-    if (isPlaying) {
-      audio.pause();
-      playIcon.classList.remove('hidden');
-      pauseIcon.classList.add('hidden');
-      isPlaying = false;
-    } else {
-      // Try to play audio
-      const playPromise = audio.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          playIcon.classList.add('hidden');
-          pauseIcon.classList.remove('hidden');
-          isPlaying = true;
-        }).catch(() => {
-          // Autoplay was prevented, show play button
-          playIcon.classList.remove('hidden');
-          pauseIcon.classList.add('hidden');
-          isPlaying = false;
-        });
-      }
-    }
-  });
-  
-  // Volume control
-  volumeSlider.addEventListener('input', (e) => {
-    const volume = parseInt(e.target.value) / 100;
-    audio.volume = volume;
-    volumeDisplay.textContent = e.target.value.padStart(2, '0') + '%';
-    
-    // Unmute when volume is increased
-    if (volume > 0 && isMuted) {
-      isMuted = false;
-    }
-  });
-  
-  // Handle audio events
-  audio.addEventListener('loadeddata', () => {
-    console.log('Audio loaded successfully');
-  });
-  
-  audio.addEventListener('canplay', () => {
-    console.log('Audio can start playing');
-  });
-  
-  audio.addEventListener('ended', () => {
-    // This shouldn't happen due to loop, but just in case
-    playIcon.classList.remove('hidden');
-    pauseIcon.classList.add('hidden');
-    isPlaying = false;
-  });
-  
-  audio.addEventListener('error', (e) => {
-    console.error('Audio error:', e);
-    console.error('Audio src:', audio.src);
-    console.error('Audio networkState:', audio.networkState);
-    console.error('Audio readyState:', audio.readyState);
-    
-    // Show error message instead of hiding player
-    const musicPlayer = document.querySelector('.fixed.bottom-4.left-4');
-    if (musicPlayer) {
-      const errorDiv = document.createElement('div');
-      errorDiv.className = 'text-red-400 text-xs mt-2';
-      errorDiv.textContent = 'Audio load failed - check console';
-      musicPlayer.appendChild(errorDiv);
-    }
-  });
-  
-  // Try to start playing automatically at 20% volume
-  setTimeout(() => {
-    audio.play().then(() => {
-      playIcon.classList.add('hidden');
-      pauseIcon.classList.remove('hidden');
-      isPlaying = true;
-      console.log('Background music started at 15% volume');
-    }).catch(() => {
-      // Autoplay prevented - show play button
-      playIcon.classList.remove('hidden');
-      pauseIcon.classList.add('hidden');
-      isPlaying = false;
-      console.log('Autoplay prevented by browser - user interaction required');
-    });
-  }, 1000);
-}
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   startFloatingSymbols();
   startUptimeCounter();
   startCRTGlitchEffects();
-  initializeMusicPlayer();
 });
