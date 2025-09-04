@@ -89,8 +89,8 @@ document.querySelector('#root').innerHTML = `
       <div class="flex items-center space-x-3">
         <!-- Play/Pause Button -->
         <button id="play-pause-btn" class="bg-green-400 text-black px-3 py-1 text-xs font-bold tracking-wider hover:bg-green-300 transition-colors w-8 h-6 flex items-center justify-center">
-          <span id="play-icon">▶</span>
-          <span id="pause-icon" class="hidden">⏸</span>
+          <span id="play-icon">PLAY</span>
+          <span id="pause-icon" class="hidden">MUTE</span>
         </button>
         
         <!-- Volume Control -->
