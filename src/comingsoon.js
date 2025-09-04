@@ -110,7 +110,7 @@ document.querySelector('#root').innerHTML = `
       
       <!-- Audio Element -->
       <audio id="background-music" loop preload="auto">
-        <source src="/music/ambientmusic.mp3" type="audio/mpeg">
+        <source src="./music/ambientmusic.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
