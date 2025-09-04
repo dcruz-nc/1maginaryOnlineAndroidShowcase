@@ -34,12 +34,6 @@ document.querySelector('#root').innerHTML = `
     <!-- Main Content Container -->
     <div class="flex items-center justify-center min-h-screen px-2 sm:px-4">
       <div class="text-center max-w-4xl mx-auto w-full">
-        <!-- Header -->
-        <div class="mb-6 sm:mb-8">
-          <div class="inline-block bg-green-400 text-black px-3 sm:px-4 py-2 font-bold text-xs sm:text-sm tracking-wider border-2 border-green-400 mb-4 sm:mb-6">
-            [SHOWCASE_IN_DEVELOPMENT]
-          </div>
-        </div>
 
         <!-- Main Coming Soon Message -->
         <div class="mb-8 sm:mb-12">
@@ -51,7 +45,7 @@ document.querySelector('#root').innerHTML = `
               Showcase website in development
             </h2>
             <p class="text-sm sm:text-base md:text-lg lg:text-xl text-green-400 font-mono tracking-wider break-all sm:break-normal">
-              [1MAGINARY.ONLINE_ANDROID_APP_SHOWCASE]
+              [1MAGINARY.ONLINE_ANDROID_APP]
             </p>
           </div>
         </div>
@@ -88,6 +82,37 @@ document.querySelector('#root').innerHTML = `
     <!-- Retro Terminal Cursor -->
     <div class="fixed bottom-4 right-4 text-green-400 text-2xl animate-pulse">
       █
+    </div>
+
+    <!-- Music Player -->
+    <div class="fixed bottom-4 left-4 z-[200] border border-green-400 p-3 system-panel">
+      <div class="flex items-center space-x-3">
+        <!-- Play/Pause Button -->
+        <button id="play-pause-btn" class="bg-green-400 text-black px-3 py-1 text-xs font-bold tracking-wider hover:bg-green-300 transition-colors w-8 h-6 flex items-center justify-center">
+          <span id="play-icon">▶</span>
+          <span id="pause-icon" class="hidden">⏸</span>
+        </button>
+        
+        <!-- Volume Control -->
+        <div class="flex items-center space-x-2">
+          <span class="text-green-400 text-xs">VOL:</span>
+          <input 
+            type="range" 
+            id="volume-slider" 
+            min="0" 
+            max="100" 
+            value="0" 
+            class="w-16 h-1 bg-green-400 appearance-none cursor-pointer slider"
+          />
+          <span id="volume-display" class="text-green-400 text-xs font-mono w-8">00%</span>
+        </div>
+      </div>
+      
+      <!-- Audio Element -->
+      <audio id="background-music" loop preload="auto">
+        <source src="/music/ambientmusic.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     </div>
   </div>
 `
@@ -289,9 +314,99 @@ function generateRandomASCII(width, height) {
   return ascii;
 }
 
+// Music Player System
+function initializeMusicPlayer() {
+  const audio = document.getElementById('background-music');
+  const playPauseBtn = document.getElementById('play-pause-btn');
+  const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+  const volumeSlider = document.getElementById('volume-slider');
+  const volumeDisplay = document.getElementById('volume-display');
+  
+  let isPlaying = false;
+  let isMuted = false; // Start unmuted at 15% volume
+  
+  // Set initial volume to 15%
+  audio.volume = 0.15;
+  volumeSlider.value = 15;
+  volumeDisplay.textContent = '15%';
+  
+  // Play/Pause functionality
+  playPauseBtn.addEventListener('click', () => {
+    if (isPlaying) {
+      audio.pause();
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+      isPlaying = false;
+    } else {
+      // Try to play audio
+      const playPromise = audio.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          playIcon.classList.add('hidden');
+          pauseIcon.classList.remove('hidden');
+          isPlaying = true;
+        }).catch(() => {
+          // Autoplay was prevented, show play button
+          playIcon.classList.remove('hidden');
+          pauseIcon.classList.add('hidden');
+          isPlaying = false;
+        });
+      }
+    }
+  });
+  
+  // Volume control
+  volumeSlider.addEventListener('input', (e) => {
+    const volume = parseInt(e.target.value) / 100;
+    audio.volume = volume;
+    volumeDisplay.textContent = e.target.value.padStart(2, '0') + '%';
+    
+    // Unmute when volume is increased
+    if (volume > 0 && isMuted) {
+      isMuted = false;
+    }
+  });
+  
+  // Handle audio events
+  audio.addEventListener('ended', () => {
+    // This shouldn't happen due to loop, but just in case
+    playIcon.classList.remove('hidden');
+    pauseIcon.classList.add('hidden');
+    isPlaying = false;
+  });
+  
+  audio.addEventListener('error', (e) => {
+    console.log('Audio error:', e);
+    // Hide music player if audio file not found
+    const musicPlayer = document.querySelector('.fixed.bottom-4.left-4');
+    if (musicPlayer) {
+      musicPlayer.style.display = 'none';
+    }
+  });
+  
+  // Try to start playing automatically at 20% volume
+  setTimeout(() => {
+    audio.play().then(() => {
+      playIcon.classList.add('hidden');
+      pauseIcon.classList.remove('hidden');
+      isPlaying = true;
+      console.log('Background music started at 15% volume');
+    }).catch(() => {
+      // Autoplay prevented - show play button
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+      isPlaying = false;
+      console.log('Autoplay prevented by browser - user interaction required');
+    });
+  }, 1000);
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   startFloatingSymbols();
   startUptimeCounter();
   startCRTGlitchEffects();
+  initializeMusicPlayer();
 });
