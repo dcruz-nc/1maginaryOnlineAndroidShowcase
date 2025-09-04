@@ -14,19 +14,15 @@ document.querySelector('#root').innerHTML = `
 
     <!-- System Info Panel -->
     <div class="fixed top-4 left-4 z-[100] border border-green-400 p-3 text-xs system-panel">
-      <div class="text-green-400 font-bold mb-2 tracking-wider">[SYSTEM_STATUS]</div>
+      <div class="text-green-400 font-bold mb-2 tracking-wider">[SHOWCASE_STATUS]</div>
       <div class="space-y-1 text-green-300">
         <div class="flex justify-between">
           <span>STATUS:</span>
-          <span class="text-green-400 font-mono system-value">DEVELOPMENT</span>
+          <span class="text-green-400 font-mono system-value">BUILDING</span>
         </div>
         <div class="flex justify-between">
-          <span>PROGRESS:</span>
-          <span id="progress" class="text-green-400 font-mono system-value">00%</span>
-        </div>
-        <div class="flex justify-between">
-          <span>ETA:</span>
-          <span class="text-green-400 font-mono system-value">TBD</span>
+          <span>APP:</span>
+          <span class="text-green-400 font-mono system-value">READY</span>
         </div>
         <div class="flex justify-between">
           <span>UPTIME:</span>
@@ -41,21 +37,21 @@ document.querySelector('#root').innerHTML = `
         <!-- Header -->
         <div class="mb-8">
           <div class="inline-block bg-green-400 text-black px-4 py-2 font-bold text-sm tracking-wider border-2 border-green-400 mb-6">
-            [SYSTEM_MAINTENANCE]
+            [SHOWCASE_IN_DEVELOPMENT]
           </div>
         </div>
 
         <!-- Main Coming Soon Message -->
         <div class="mb-12">
           <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-green-400 mb-6 tracking-wider" style="text-shadow: 0 0 20px #00FF00;">
-            COMING SOON
+            COMING SOON...
           </h1>
           <div class="border-2 border-green-400 p-6 md:p-8 bg-black">
             <h2 class="text-xl md:text-2xl lg:text-3xl text-green-300 mb-4 tracking-wider">
-              We're working on something amazing
+              Showcase website in development
             </h2>
             <p class="text-lg md:text-xl text-green-400 font-mono tracking-wider">
-              [1MAGINARY.ONLINE_ANDROID_APP]
+              [1MAGINARY.ONLINE_ANDROID_APP_SHOWCASE]
             </p>
           </div>
         </div>
@@ -64,38 +60,26 @@ document.querySelector('#root').innerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
           <div class="border border-green-400 p-4 bg-black">
             <span class="text-green-400 font-bold text-sm tracking-wider">[STATUS]</span><br>
-            <span class="text-green-300">IN_DEVELOPMENT</span>
+            <span class="text-green-300">SHOWCASE_DEV</span>
           </div>
           <div class="border border-green-400 p-4 bg-black">
             <span class="text-green-400 font-bold text-sm tracking-wider">[TYPE]</span><br>
-            <span class="text-green-300">ANDROID_APP</span>
+            <span class="text-green-300">PORTFOLIO_SITE</span>
           </div>
           <div class="border border-green-400 p-4 bg-black">
-            <span class="text-green-400 font-bold text-sm tracking-wider">[READY]</span><br>
-            <span class="text-green-300">COMING_SOON</span>
+            <span class="text-green-400 font-bold text-sm tracking-wider">[APP]</span><br>
+            <span class="text-green-300">COMPLETE</span>
           </div>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="mb-8">
-          <div class="text-green-400 font-bold mb-4 tracking-wider text-lg">
-            [DEVELOPMENT_PROGRESS]
-          </div>
-          <div class="w-full bg-black border-2 border-green-400 p-2">
-            <div id="progress-bar" class="h-4 bg-green-400 transition-all duration-1000 ease-out" style="width: 0%"></div>
-          </div>
-          <div class="text-green-300 text-sm mt-2 tracking-wider">
-            [SYSTEM_INITIALIZING...]
-          </div>
-        </div>
 
         <!-- Footer Info -->
         <div class="border-t border-green-400 pt-8">
           <div class="text-green-400 font-bold tracking-wider mb-2">
-            © 2024 1MAGINARY.ONLINE
+            © 2025 1MAGINARY.ONLINE
           </div>
           <div class="text-green-300 text-sm tracking-wider">
-            ANDROID DEVELOPMENT IN PROGRESS
+            PORTFOLIO SHOWCASE IN DEVELOPMENT
           </div>
         </div>
       </div>
@@ -199,31 +183,6 @@ function startFloatingSymbols() {
   }, 8000);
 }
 
-// Progress Bar Animation
-function animateProgressBar() {
-  const progressBar = document.getElementById('progress-bar');
-  const progressText = document.getElementById('progress');
-  let progress = 0;
-  
-  const interval = setInterval(() => {
-    progress += Math.random() * 3; // Random increment between 0-3%
-    if (progress > 100) progress = 100;
-    
-    progressBar.style.width = `${progress}%`;
-    progressText.textContent = `${Math.floor(progress).toString().padStart(2, '0')}%`;
-    
-    if (progress >= 100) {
-      clearInterval(interval);
-      // Reset progress after reaching 100%
-      setTimeout(() => {
-        progress = 0;
-        progressBar.style.width = '0%';
-        progressText.textContent = '00%';
-        animateProgressBar(); // Restart animation
-      }, 3000);
-    }
-  }, 200);
-}
 
 // Uptime Counter
 function startUptimeCounter() {
@@ -335,5 +294,4 @@ document.addEventListener('DOMContentLoaded', () => {
   startFloatingSymbols();
   startUptimeCounter();
   startCRTGlitchEffects();
-  animateProgressBar();
 });
