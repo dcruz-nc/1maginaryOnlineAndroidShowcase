@@ -110,7 +110,7 @@ document.querySelector('#root').innerHTML = `
       
       <!-- Audio Element -->
       <audio id="background-music" loop preload="auto">
-        <source src="./music/ambientmusic.mp3" type="audio/mpeg">
+        <source src="/music/ambientmusic.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
@@ -370,6 +370,14 @@ function initializeMusicPlayer() {
   });
   
   // Handle audio events
+  audio.addEventListener('loadeddata', () => {
+    console.log('Audio loaded successfully');
+  });
+  
+  audio.addEventListener('canplay', () => {
+    console.log('Audio can start playing');
+  });
+  
   audio.addEventListener('ended', () => {
     // This shouldn't happen due to loop, but just in case
     playIcon.classList.remove('hidden');
@@ -378,11 +386,18 @@ function initializeMusicPlayer() {
   });
   
   audio.addEventListener('error', (e) => {
-    console.log('Audio error:', e);
-    // Hide music player if audio file not found
+    console.error('Audio error:', e);
+    console.error('Audio src:', audio.src);
+    console.error('Audio networkState:', audio.networkState);
+    console.error('Audio readyState:', audio.readyState);
+    
+    // Show error message instead of hiding player
     const musicPlayer = document.querySelector('.fixed.bottom-4.left-4');
     if (musicPlayer) {
-      musicPlayer.style.display = 'none';
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'text-red-400 text-xs mt-2';
+      errorDiv.textContent = 'Audio load failed - check console';
+      musicPlayer.appendChild(errorDiv);
     }
   });
   
