@@ -13,18 +13,18 @@ document.querySelector('#root').innerHTML = `
     <div id="floating-symbols" class="fixed inset-0 pointer-events-none z-45"></div>
 
     <!-- System Info Panel -->
-    <div class="fixed top-4 left-4 z-[100] border border-green-400 p-3 text-xs system-panel">
-      <div class="text-green-400 font-bold mb-2 tracking-wider">[SHOWCASE_STATUS]</div>
+    <div class="fixed top-2 left-2 sm:top-4 sm:left-4 z-[100] border border-green-400 p-2 sm:p-3 text-xs system-panel max-w-[calc(100vw-1rem)] sm:max-w-none">
+      <div class="text-green-400 font-bold mb-1 sm:mb-2 tracking-wider text-xs sm:text-sm">[SHOWCASE_STATUS]</div>
       <div class="space-y-1 text-green-300">
-        <div class="flex justify-between">
+        <div class="flex justify-between text-xs sm:text-sm">
           <span>STATUS:</span>
           <span class="text-green-400 font-mono system-value">BUILDING</span>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between text-xs sm:text-sm">
           <span>APP:</span>
           <span class="text-green-400 font-mono system-value">READY</span>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between text-xs sm:text-sm">
           <span>UPTIME:</span>
           <span id="uptime" class="text-green-400 font-mono system-value">00:00:00</span>
         </div>
@@ -32,53 +32,53 @@ document.querySelector('#root').innerHTML = `
     </div>
 
     <!-- Main Content Container -->
-    <div class="flex items-center justify-center min-h-screen px-4">
-      <div class="text-center max-w-4xl mx-auto">
+    <div class="flex items-center justify-center min-h-screen px-2 sm:px-4">
+      <div class="text-center max-w-4xl mx-auto w-full">
         <!-- Header -->
-        <div class="mb-8">
-          <div class="inline-block bg-green-400 text-black px-4 py-2 font-bold text-sm tracking-wider border-2 border-green-400 mb-6">
+        <div class="mb-6 sm:mb-8">
+          <div class="inline-block bg-green-400 text-black px-3 sm:px-4 py-2 font-bold text-xs sm:text-sm tracking-wider border-2 border-green-400 mb-4 sm:mb-6">
             [SHOWCASE_IN_DEVELOPMENT]
           </div>
         </div>
 
         <!-- Main Coming Soon Message -->
-        <div class="mb-12">
-          <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-green-400 mb-6 tracking-wider" style="text-shadow: 0 0 20px #00FF00;">
+        <div class="mb-8 sm:mb-12">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold text-green-400 mb-4 sm:mb-6 tracking-wider px-2" style="text-shadow: 0 0 20px #00FF00;">
             COMING SOON...
           </h1>
-          <div class="border-2 border-green-400 p-6 md:p-8 bg-black">
-            <h2 class="text-xl md:text-2xl lg:text-3xl text-green-300 mb-4 tracking-wider">
+          <div class="border-2 border-green-400 p-4 sm:p-6 md:p-8 bg-black mx-2 sm:mx-0">
+            <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl text-green-300 mb-3 sm:mb-4 tracking-wider">
               Showcase website in development
             </h2>
-            <p class="text-lg md:text-xl text-green-400 font-mono tracking-wider">
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl text-green-400 font-mono tracking-wider break-all sm:break-normal">
               [1MAGINARY.ONLINE_ANDROID_APP_SHOWCASE]
             </p>
           </div>
         </div>
 
         <!-- Status Information -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-          <div class="border border-green-400 p-4 bg-black">
-            <span class="text-green-400 font-bold text-sm tracking-wider">[STATUS]</span><br>
-            <span class="text-green-300">SHOWCASE_DEV</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-12 px-2 sm:px-0">
+          <div class="border border-green-400 p-3 sm:p-4 bg-black">
+            <span class="text-green-400 font-bold text-xs sm:text-sm tracking-wider">[STATUS]</span><br>
+            <span class="text-green-300 text-sm sm:text-base">SHOWCASE_DEV</span>
           </div>
-          <div class="border border-green-400 p-4 bg-black">
-            <span class="text-green-400 font-bold text-sm tracking-wider">[TYPE]</span><br>
-            <span class="text-green-300">PORTFOLIO_SITE</span>
+          <div class="border border-green-400 p-3 sm:p-4 bg-black">
+            <span class="text-green-400 font-bold text-xs sm:text-sm tracking-wider">[TYPE]</span><br>
+            <span class="text-green-300 text-sm sm:text-base">PORTFOLIO_SITE</span>
           </div>
-          <div class="border border-green-400 p-4 bg-black">
-            <span class="text-green-400 font-bold text-sm tracking-wider">[APP]</span><br>
-            <span class="text-green-300">COMPLETE</span>
+          <div class="border border-green-400 p-3 sm:p-4 bg-black sm:col-span-2 md:col-span-1">
+            <span class="text-green-400 font-bold text-xs sm:text-sm tracking-wider">[APP]</span><br>
+            <span class="text-green-300 text-sm sm:text-base">COMPLETE</span>
           </div>
         </div>
 
 
         <!-- Footer Info -->
-        <div class="border-t border-green-400 pt-8">
-          <div class="text-green-400 font-bold tracking-wider mb-2">
+        <div class="border-t border-green-400 pt-6 sm:pt-8 px-2 sm:px-0">
+          <div class="text-green-400 font-bold tracking-wider mb-2 text-sm sm:text-base">
             © 2025 1MAGINARY.ONLINE
           </div>
-          <div class="text-green-300 text-sm tracking-wider">
+          <div class="text-green-300 text-xs sm:text-sm tracking-wider">
             PORTFOLIO SHOWCASE IN DEVELOPMENT
           </div>
         </div>
