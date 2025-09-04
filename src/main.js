@@ -1,5 +1,8 @@
 import './style.css'
 
+// Redirect to coming soon page
+window.location.replace('comingsoon.html');
+
 document.querySelector('#root').innerHTML = `
   <div class="min-h-screen bg-black text-green-400 font-mono relative overflow-hidden">
     <!-- Static Noise Overlay -->

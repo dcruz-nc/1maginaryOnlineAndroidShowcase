@@ -1,0 +1,9 @@
+# Redirect index.html to comingsoon.html
+RewriteEngine On
+RewriteRule ^index\.html$ comingsoon.html [R=301,L]
+
+# Redirect root directory to comingsoon.html
+RewriteRule ^$ comingsoon.html [R=301,L]
+
+# Optional: Redirect any other HTML files to comingsoon.html
+# RewriteRule ^.*\.html$ comingsoon.html [R=301,L]
